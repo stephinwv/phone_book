@@ -9,25 +9,25 @@
 <input type="text" class="form-control" name="zip" placeholder="zip">
 <input type="text" class="form-control" name="phone" placeholder="(000)000-0000">
 <input type = "text" name = "email" placeholder = "Email@blah.com">
-<input type="submit">
+<input type="submit" onclick= "">
 </div>
 </form>
-<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
+<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search by name">
 <table id="myTable">
   <tr class="header">
     <th style="width:10%;">First Name</th>
     <th style="width:10%;">Last Name</th>
-    <th style="width:20%;">St Address</th>
+    <th style="width:10%;">St Address</th>
     <th style="width:10%;">City</th>
     <th style="width:5%;">State</th>
     <th style="width:5%;">Zip</th>
     <th style="width:10%;">Phone</th>
-    <th style="width:15%;">Email</th>
+    <th style="width:10%;">Email</th>
   </tr>
-  <%=phonebook%>
+ 
 <%phonebook.each do |value|%>
 <tr>
-<br><td><%=value['first_name']%> </td>
+<td><%=value['first_name']%> </td>
 <td><%=value['last_name']%> <td> 
 <td><%=value['address']%> <td> 
 <td><%=value['city']%> <td>
@@ -35,8 +35,6 @@
 <td><%=value['zip']%> <td>  
 <td><%=value['phone']%> <td> 
 <td><%=value['email']%> <td>  <br>
-	
-
 </tr>
 <%end%>
 </table>
@@ -61,3 +59,28 @@ function searchFunction() {
   }
 }
 </script>
+ <form action='/update_column' method='post'>
+
+   	<select name='table_column'>
+		<option value='col_first_name'>First Name</option>
+		<option value='col_last_name'>Last Name</option>
+		<option value='col_address'>Street Address</option>
+		<option value='col_city'>City</option>
+		<option value='col_state'>State</option>
+		<option value='col_zip'>Zip</option>
+		<option value='col_phone'>Phone Number</option>
+		<option value='col_email'>Email</option>
+	</select>
+	<br>
+
+	   <input type="text" name="new_data" placeholder="new_data"><br>
+	   <input type="text" name="old_data" placeholder="old_data"><br>
+	   <input type="submit" value="Update">
+   </form>
+
+   <br>
+   <br>
+
+   <form action='/delete_all' method='post'>
+   	<input type = "submit" value = "delete">
+   </form>
