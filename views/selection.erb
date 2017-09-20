@@ -15,13 +15,28 @@
 <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
 <table id="myTable">
   <tr class="header">
-    <th style="width:60%;">Name</th>
-    <th style="width:40%;">Country</th>
+    <th style="width:10%;">First Name</th>
+    <th style="width:10%;">Last Name</th>
+    <th style="width:20%;">St Address</th>
+    <th style="width:10%;">City</th>
+    <th style="width:5%;">State</th>
+    <th style="width:5%;">Zip</th>
+    <th style="width:10%;">Phone</th>
+    <th style="width:15%;">Email</th>
   </tr>
+  <%=phonebook%>
 <%phonebook.each do |value|%>
 <tr>
 <br><td><%=value['first_name']%> </td>
-<td><%=value['last_name']%> <td> <br>
+<td><%=value['last_name']%> <td> 
+<td><%=value['address']%> <td> 
+<td><%=value['city']%> <td>
+<td><%=value['state']%> <td>
+<td><%=value['zip']%> <td>  
+<td><%=value['phone']%> <td> 
+<td><%=value['email']%> <td>  <br>
+	
+
 </tr>
 <%end%>
 </table>
