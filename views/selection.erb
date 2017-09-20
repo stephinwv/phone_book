@@ -1,10 +1,48 @@
-<h4>Add your number to our online database</h4>
-<form class="phone" action="add_phone" method="POST">
+<h4>Add your information to our secure online database</h4>
+<form class="phone" action="/selection" method="POST">
 <div class="input-group">
+<input type="text" class="form-control" name="first_name" placeholder="first_name">
+<input type="text" class="form-control" name="last_name" placeholder="last_name">
+<input type="text" class="form-control" name="address" placeholder="Street Address">
+<input type="text" class="form-control" name="city" placeholder="City">
+<input type="text" class="form-control" name="state" placeholder="State">
+<input type="text" class="form-control" name="zip" placeholder="zip">
 <input type="text" class="form-control" name="phone" placeholder="(000)000-0000">
-<span class="input-group-btn">
-<button class="btn btn-default" type="submit"></button>
-</span>
+<input type = "text" name = "email" placeholder = "Email@blah.com">
+<input type="submit">
 </div>
-<!-- /input-group -->
 </form>
+<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
+<table id="myTable">
+  <tr class="header">
+    <th style="width:60%;">Name</th>
+    <th style="width:40%;">Country</th>
+  </tr>
+<%phonebook.each do |value|%>
+<tr>
+<br><td><%=value['first_name']%> </td>
+<td><%=value['last_name']%> <td> <br>
+</tr>
+<%end%>
+</table>
+<script>
+function searchFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>

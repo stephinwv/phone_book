@@ -3,7 +3,7 @@ require 'pony'
 require 'pg'
 
 
-load "./local_env.rb" 
+load './local_env.rb' if File.exists?('./local_env.rb')
 
 db_params = {
 	host: ENV['host'],
@@ -14,21 +14,35 @@ db_params = {
 }
 
 db = PG::Connection.new(db_params)
-post '/subscribe' do
-	phone = params[:phone]
-# 	check_phone = db.exec("SELECT * FROM mailing_list WHERE email = '#{email}'")
-# 	if
-# 		check_email.num_tuples.zero? == false
-# 		erb :mailing_list, :locals => {:message => "You have already joined our mailing list"}
-# 		else
-# 			subscribe = db.exec("insert into mailing_list(email)VALUES('#{email}')")
-# 			erb :mailing_list, :locals => {:message => "Thanks, for joining our mailing list."}
-# end
-end
+
 get '/' do
-erb :selection
+phonebook = db.exec("Select * From phonebook")
+erb :selection, locals: {phonebook: phonebook}
 end
 post '/selection' do
+first_name = params[:first_name]
+last_name = params[:last_name]
+address = params[:address]
+city = params[:city]
+state = params[:state]
+zip = params[:zip]
 phone = params[:phone]
-erb :selection, locals: {phone: phone}
+email = params[:email]
+
+
+db.exec("INSERT INTO phonebook(first_name, last_name, address, city, state, zip, phone, email) VALUES('#{first_name}', '#{last_name}', '#{address}', '#{city}', '#{state}', '#{zip}', '#{phone}', '#{email}')");
+
+end
+get '/selection'do
+first_name = params[:first_name]
+last_name = params[:last_name]
+address = params[:address]
+city = params[:city]
+state = params[:state]
+zip = params[:zip]
+phone = params[:phone]
+email = params[:email]
+phonebook = params[:phonebook]
+
+erb :selection, locals:{first_name: first_name, last_name:last_name, address:address, city: city, state: state, zip: zip, phone: phone, email: email}
 end
