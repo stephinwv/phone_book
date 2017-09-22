@@ -1,0 +1,40 @@
+body {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: lightblue;
+}
+
+#banner {
+    font-size: 40px;
+    font-family: 'Times', Arial;
+    font-weight: bold;
+    background-color: green;
+    color: lightblue;
+    height: 80px;
+}
+input[type=text]:focus {
+    background-color: lightgreen;
+}
+input[type=text] {
+    border: none;
+    border-bottom: 2px solid green;
+}
+
+#info_boxes {
+    border: green solid 2px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+    height: 50px;
+}
+table, th, td {
+   border: 1px solid green;
+}

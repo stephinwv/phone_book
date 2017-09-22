@@ -1,6 +1,19 @@
+<doctype HTML5>
+<html lang="en-US">
+<head>
+    <meta charset="utf -8">
+    <title>Phonebook Query</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id = "banner">
+<center><i>Mined Minds Phonebook<i></center>
+</div>
+<div id = "info_boxes">
 <h4>Add your information to our secure online database</h4>
 <form class="phone" action="/selection" method="POST">
 <div class="input-group">
+
 <input type="text" class="form-control" name="first_name" placeholder="first_name">
 <input type="text" class="form-control" name="last_name" placeholder="last_name">
 <input type="text" class="form-control" name="address" placeholder="Street Address">
@@ -15,26 +28,26 @@
 <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search by name">
 <table id="myTable">
   <tr class="header">
-    <th style="width:10%;">First Name</th>
-    <th style="width:10%;">Last Name</th>
-    <th style="width:10%;">St Address</th>
-    <th style="width:10%;">City</th>
-    <th style="width:5%;">State</th>
-    <th style="width:5%;">Zip</th>
-    <th style="width:10%;">Phone</th>
-    <th style="width:10%;">Email</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>St Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    <th>Phone</th>
+    <th>Email</th>
   </tr>
  
 <%phonebook.each do |value|%>
 <tr>
 <td><%=value['first_name']%> </td>
-<td><%=value['last_name']%> <td> 
-<td><%=value['address']%> <td> 
-<td><%=value['city']%> <td>
-<td><%=value['state']%> <td>
-<td><%=value['zip']%> <td>  
-<td><%=value['phone']%> <td> 
-<td><%=value['email']%> <td>  <br>
+<td><%=value['last_name']%> </td> 
+<td><%=value['address']%> </td> 
+<td><%=value['city']%> </td>
+<td><%=value['state']%> </td>
+<td><%=value['zip']%> </td>  
+<td><%=value['phone']%> </td> 
+<td><%=value['email']%> </td> 
 </tr>
 <%end%>
 </table>
@@ -73,14 +86,27 @@ function searchFunction() {
 	</select>
 	<br>
 
-	   <input type="text" name="new_data" placeholder="new_data"><br>
-	   <input type="text" name="old_data" placeholder="old_data"><br>
+	   <input type="text" name="new data" placeholder="new_data"><br>
+	   <input type="text" name="old data" placeholder="old_data"><br>
 	   <input type="submit" value="Update">
    </form>
 
    <br>
    <br>
 
-   <form action='/delete_all' method='post'>
-   	<input type = "submit" value = "delete">
-   </form>
+   <form action='/delete' method='post'> Delete your information by:<br>
+
+   	<select name='table_column'>
+		<option value='col_first_name'>First Name</option>
+		<option value='col_last_name'>Last Name</option>
+		<option value='col_address'>Street Address</option>
+		<option value='col_city_state_zip'>City</option>
+		<option value='col_phone_num'>Phone Number</option>
+		<option value='col_email'>Email Adress</option>
+	</select><br>
+   <input type="text" name="data_to_delete" placeholder="Delete Info"><br>
+	
+
+	   <input type="submit" value="Delete">
+</form>
+   	
