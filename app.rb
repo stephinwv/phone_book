@@ -5,7 +5,6 @@ require 'pg'
 
 load './local_env.rb' if File.exists?('./local_env.rb')
 
-
 db_params = {
 	host: ENV['host'],
 	port: ENV['port'],
@@ -34,32 +33,6 @@ post '/selection' do
 
 	db.exec("INSERT INTO phonebook(first_name, last_name, address, city, state, zip, phone, email) VALUES('#{first_name}', '#{last_name}', '#{address}', '#{city}', '#{state}', '#{zip}', '#{phone}', '#{email}')");
 	redirect '/'
-end
-post '/search_column' do
-
-   new_data = params[:new_data]
-   old_data = params[:old_data]
-   column = params[:table_column]
-
-   	case column
-   		when 'col_first_name'
-   			db.exec("SELECT * FROM phonebook WHERE first_name LIKE '#{find}'");
-   		when 'col_last_name'
-   			db.exec("SELECT * FROM phonebook WHERE last_name LIKE '#{find}'");
-   		when 'col_address'
-   			db.exec("SELECT * FROM phonebook WHERE address LIKE '#{find}'");
-   		when 'col_city'
-   			db.exec("SELECT * FROM phonebook WHERE city LIKE '#{find}'");
-   		when 'col_state'
-   			db.exec("SELECT * FROM phonebook WHERE state LIKE '#{find}'");
-   		when 'col_zip'
-   			db.exec("SELECT * FROM phonebook WHERE zip LIKE '#{find}'");
-   		when 'col_phone'
-   			db.exec("SELECT * FROM phonebook WHERE phone LIKE '#{find}'");
-   		when 'col_email'
-			db.exec("SELECT * FROM phonebook WHERE email LIKE '#{find}'");
-	end
-   redirect '/'
 end
 post '/update_column' do
 

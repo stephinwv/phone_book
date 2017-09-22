@@ -20,53 +20,34 @@
 <input type="text" class="form-control" name="city" placeholder="City">
 <input type="text" class="form-control" name="state" placeholder="State">
 <input type="text" class="form-control" name="zip" placeholder="Zip Code">
-<input type="tel" class="form-control" name="phone" placeholder="(000)000-0000">
-<input type = "email" name = "email" placeholder = "Email@example.com">
+<input type="text" class="form-control" name="phone" placeholder="(000)000-0000">
+<input type = "text" name = "email" placeholder = "Email@example.com">
 <input type="submit" onclick= "">
 </div>
 </form>
-<!-- <div id="search"><input type="text" id="myInput" placeholder="Search by last name">
-</div> -->
-<!-- onkeyup="searchFunction()" 
-<script> -->
-<!-- // function searchFunction() {
-//   // Declare variables
-//   var input, filter, table, tr, td, i;
-//   input = document.getElementById("myInput");
-//   filter = input.value.toUpperCase();
-//   table = document.getElementById("myTable");
-//   tr = table.getElementsByTagName("tr");
-//   // Loop through all table rows, and hide those who don't match the search query
-//   for (i = 0; i < tr.length; i++) {
-//     td = tr[i].getElementsByTagName("td")[1];
-//     if (td) {
-//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-//         tr[i].style.display = "";
-//       } else {
-//         tr[i].style.display = "none";
-//       }
-//     }
-//   }
-// }Really cool function that searches and results show as typed, similar to the pairing app when boxes popped up based on the entry. -->
-<!-- </script> -->
- <form action='/search_column' method='post'> Search information by:<br>
-
-   	<select name='table_column'>
-		<option value='col_first_name'>First Name</option>
-		<option value='col_last_name'>Last Name</option>
-		<option value='col_address'>Street Address</option>
-		<option value='col_city'>City</option>
-		<option value='col_state'>State</option>
-		<option value='col_zip'>Zip</option>
-		<option value='col_phone'>Phone</option>
-		<option value='col_email'>Email</option>
-	</select>
-	<br>
-
-	   <input type="text" name="find" placeholder="Search"><br>
-	  
-	   <input type="submit" value="search">
-   </form>
+<div id="search"><input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search by last name">
+</div>
+<script>
+function searchFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 <table id="myTable">
   <tr class="header">
     <th>First Name</th>
