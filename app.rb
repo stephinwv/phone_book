@@ -7,6 +7,7 @@ load './local_env.rb' if File.exists?('./local_env.rb')
 heroku params = {
 	username: ENV['username'],
 	password: ENV['password']
+}
 db_params = {
 	host: ENV['host'],
 	port: ENV['port'],
