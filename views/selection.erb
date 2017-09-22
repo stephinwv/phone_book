@@ -25,7 +25,28 @@
 <input type="submit" onclick= "">
 </div>
 </form>
-<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search by name">
+<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search by last name">
+<script>
+function searchFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 <table id="myTable">
   <tr class="header">
     <th>First Name</th>
@@ -51,28 +72,9 @@
 </tr>
 <%end%>
 </table>
-<script>
-function searchFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
- <form action='/update_column' method='post'>
+
+<br>
+ <form action='/update_column' method='post'> Update your information by:<br>
 
    	<select name='table_column'>
 		<option value='col_first_name'>First Name</option>
@@ -81,13 +83,13 @@ function searchFunction() {
 		<option value='col_city'>City</option>
 		<option value='col_state'>State</option>
 		<option value='col_zip'>Zip</option>
-		<option value='col_phone'>Phone Number</option>
+		<option value='col_phone'>Phone</option>
 		<option value='col_email'>Email</option>
 	</select>
 	<br>
 
-	   <input type="text" name="new data" placeholder="new_data"><br>
-	   <input type="text" name="old data" placeholder="old_data"><br>
+	   <input type="text" name="new_data" placeholder="New Data"><br>
+	   <input type="text" name="old_data" placeholder="Old Data"><br>
 	   <input type="submit" value="Update">
    </form>
 
@@ -100,9 +102,11 @@ function searchFunction() {
 		<option value='col_first_name'>First Name</option>
 		<option value='col_last_name'>Last Name</option>
 		<option value='col_address'>Street Address</option>
-		<option value='col_city_state_zip'>City</option>
-		<option value='col_phone_num'>Phone Number</option>
-		<option value='col_email'>Email Adress</option>
+		<option value='col_city'>City</option>
+		<option value='col_state'>State</option>
+		<option value='col_zip'>Zip</option>
+		<option value='col_phone'>Phone</option>
+		<option value='col_email'>Email</option>
 	</select><br>
    <input type="text" name="data_to_delete" placeholder="Delete Info"><br>
 	

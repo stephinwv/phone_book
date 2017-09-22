@@ -46,16 +46,16 @@ post '/update_column' do
    		when 'col_last_name'
    			db.exec("UPDATE phonebook SET last_name = '#{new_data}' WHERE last_name = '#{old_data}' ");
    		when 'col_address'
-   			db.exec("UPDATE phonebook SET address = '#{new_data}' WHERE street_address = '#{old_data}' ");
+   			db.exec("UPDATE phonebook SET address = '#{new_data}' WHERE address = '#{old_data}' ");
    		when 'col_city'
    			db.exec("UPDATE phonebook SET city = '#{new_data}' WHERE city = '#{old_data}' ");
    		when 'col_state'
    			db.exec("UPDATE phonebook SET state = '#{new_data}' WHERE state = '#{old_data}' ");
    		when 'col_zip'
    			db.exec("UPDATE phonebook SET zip = '#{new_data}' WHERE zip = '#{old_data}' ");
-   		when 'col_cell'
+   		when 'col_phone'
    			db.exec("UPDATE phonebook SET phone = '#{new_data}' WHERE phone = '#{old_data}' ");
-   		when 'col_home'
+   		when 'col_email'
 			db.exec("UPDATE phonebook SET email = '#{new_data}' WHERE email = '#{old_data}' ");
 	end
    redirect '/'

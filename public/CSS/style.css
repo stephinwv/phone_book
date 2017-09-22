@@ -20,13 +20,6 @@ input[type=text] {
     border-bottom: 2px solid green;
 }
 
-#info_boxes {
-    border: green solid 2px;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-}
 table {
     width: 100%;
 }
