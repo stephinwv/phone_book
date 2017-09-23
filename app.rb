@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'pony'
 require 'pg'
+require 'bcrypt'
 
 
 load './local_env.rb' if File.exists?('./local_env.rb')
