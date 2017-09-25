@@ -1,7 +1,8 @@
+require 'rubygems'
 require 'sinatra'
 require 'pony'
 require 'pg'
-require 'bcrypt'
+# require 'bcrypt!'
 
 
 load './local_env.rb' if File.exists?('./local_env.rb')
@@ -38,13 +39,19 @@ post '/login' do
 	correct = db.exec("SELECT * FROM login_info WHERE username = '#{username}'")
     login_data = correct.values.flatten
     if login_data.include?(password)
-    redirect "/selection"
-    else 
-        redirect "/"
+    	redirect "/selection"
+    	else 
+    		redirect "/wrong"
+
     end
     
 end
-
+get '/wrong' do
+  erb :wrong
+end
+post '/wrong' do
+	redirect '/'
+end
 get '/selection' do
 	phonebook = db.exec("Select * From phonebook");
 	erb :selection, locals: {phonebook: phonebook}
