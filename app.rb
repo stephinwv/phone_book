@@ -17,7 +17,30 @@ db_params = {
 db = PG::Connection.new(db_params)
 
 get '/' do
-	phonebook = db.exec("Select * From phonebook")
+	login_info = db.exec("Select * From login_info")
+	login_info = params[:login_info]
+	erb :login, locals: {login_info: login_info}
+end
+
+post '/register' do
+
+	user_name = params[:user_name]
+	pass_word = params[:pass_word]
+	db.exec("INSERT INTO public.login_info (username, password) VALUES('#{user_name}', '#{pass_word}')")
+	 
+	redirect '/selection'
+end
+post '/login' do
+	username = params[:username]
+	password = params[:password]
+	
+	login_info = params[:login_info]
+    redirect '/selection'
+
+end
+
+get '/selection' do
+	phonebook = db.exec("Select * From phonebook");
 	erb :selection, locals: {phonebook: phonebook}
 end
 post '/selection' do
@@ -33,8 +56,18 @@ post '/selection' do
 
 
 	db.exec("INSERT INTO phonebook(first_name, last_name, address, city, state, zip, phone, email) VALUES('#{first_name}', '#{last_name}', '#{address}', '#{city}', '#{state}', '#{zip}', '#{phone}', '#{email}')");
-	redirect '/'
+	redirect '/selection'
 end
+post '/search' do
+	column = params[:table_column]
+	last_name = params[:last_name]
+	# case column
+	# when 'col_last_name'
+	# 	db.exec("SELECT FROM phonebook WHERE  last_name LIKE '#{last_name}' ");
+ #   	end
+   redirect '/selection'
+end
+
 post '/update_column' do
 
    new_data = params[:new_data]
@@ -59,7 +92,7 @@ post '/update_column' do
    		when 'col_email'
 			db.exec("UPDATE phonebook SET email = '#{new_data}' WHERE email = '#{old_data}' ");
 	end
-   redirect '/'
+   redirect '/selection'
 end
 
 post "/delete" do
@@ -83,5 +116,5 @@ post "/delete" do
     	when 'col_email'
      	db.exec("DELETE FROM phonebook WHERE email = '#{deleted}'");
     end
-     redirect '/'
+     redirect '/selection'
 end

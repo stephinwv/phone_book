@@ -25,8 +25,41 @@
 <input type="submit" onclick= "">
 </div>
 </form>
+<div id = "searched_stuff">
+<form method = "post" action = "search">
+ <!-- <select name = 'table_column'>
+    	<option value='col_first_name'>First Name</option>
+		<option value='col_phone_num'>Phone Number</option>
+    </select> -->
+
+    <input type = "text" name = "last_name" placeholder = "Last Name...">
+    
+    <input type = "submit" value = "search">
+
+    </form>
+   </div> 
+      
+      
 <div id="search">Search our records<br>
-<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search by last name">
+<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search by last name"> 
+ <form action='/search_column' method='post'><br>
+
+   	<select name='table_column'>
+		<option value='col_first_name'>First Name</option>
+		<option value='col_last_name'>Last Name</option>
+		<option value='col_address'>Street Address</option>
+		<option value='col_city'>City</option>
+		<option value='col_state'>State</option>
+		<option value='col_zip'>Zip</option>
+		<option value='col_phone'>Phone</option>
+		<option value='col_email'>Email</option>
+	</select>
+	<br>
+
+	   <input type="text" name="search" placeholder="Search"><br>
+	 
+	   <input type="submit" value="search">
+   </form>
 </div>
 <script>
 function searchFunction() {
@@ -48,7 +81,7 @@ function searchFunction() {
     }
   }
 }
-</script>
+</script> 
 <table id="myTable">
   <tr class="header">
     <th>First Name</th>
