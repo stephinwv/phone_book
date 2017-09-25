@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'pony'
 require 'pg'
-# require 'bcrypt'
+require 'bcrypt'
 
 
 load './local_env.rb' if File.exists?('./local_env.rb')
@@ -26,6 +26,7 @@ post '/register' do
 
 	user_name = params[:user_name]
 	pass_word = params[:pass_word]
+	password = BCrypt::Password.create "#{password}"
 	db.exec("INSERT INTO public.login_info (username, password) VALUES('#{user_name}', '#{pass_word}')")
 	 
 	redirect '/selection'
@@ -34,9 +35,14 @@ post '/login' do
 	username = params[:username]
 	password = params[:password]
 	
-	login_info = params[:login_info]
-    redirect '/selection'
-
+	correct = db.exec("SELECT * FROM login_info WHERE username = '#{username}'")
+    login_data = correct.values.flatten
+    if login_data.include?(password)
+    redirect "/selection"
+    else 
+        redirect "/"
+    end
+    
 end
 
 get '/selection' do
